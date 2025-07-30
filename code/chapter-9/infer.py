@@ -1,16 +1,15 @@
 import flask
 import tensorflow as tf
-from tf import keras
-from keras.utils.generic_utils import CustomObjectScope
-from keras.models import load_model
-from keras.preprocessing.image import img_to_array
+from tensorflow.keras.utils import CustomObjectScope
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.image import img_to_array
 from PIL import Image
 import numpy as np
 import io
 
 app = flask.Flask(__name__)
 
-with CustomObjectScope({'relu6': keras.applications.mobilenet.relu6}):
+with CustomObjectScope({'relu6': tf.nn.relu6}):  # keras.applications.mobilenet.relu6
     model = load_model('ADD_H5_MODEL_PATH')
 
 def preprocess(image):
